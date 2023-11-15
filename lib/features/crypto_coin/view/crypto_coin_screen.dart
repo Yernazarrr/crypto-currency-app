@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:developer';
 
 class CryptoCoinScreen extends StatefulWidget {
   const CryptoCoinScreen({super.key});
@@ -14,17 +13,9 @@ class _CryptoCoinScreenState extends State<CryptoCoinScreen> {
   @override
   void didChangeDependencies() {
     final args = ModalRoute.of(context)?.settings.arguments;
-    if (args == null) {
-      log('You must provide arguments');
-      return;
-    }
+    assert(args != null && args is String, 'You must provide String args');
 
-    if (args is! String) {
-      log('You must provide String args');
-      return;
-    }
-
-    coinName = args;
+    coinName = args as String;
     setState(() {});
     super.didChangeDependencies();
   }
